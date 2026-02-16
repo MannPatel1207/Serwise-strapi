@@ -1,52 +1,194 @@
-# 🚀 Getting started with Strapi
+# 🚀 ServiceSmith Strapi Application
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+A comprehensive Strapi-based backend for managing water purification device types, services, subscriptions, parts inventory, and dynamic pages.
 
-### `develop`
+## 📋 Project Overview
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+ServiceSmith is a service management platform with the following data models:
 
-```
-npm run develop
-# or
-yarn develop
-```
+- **Device Types** - Different types of water purification devices (RO, UV, etc.)
+- **Services** - Services available for specific device types with financial tracking
+- **Subscriptions** - Subscription plans linked to device types
+- **Parts** - Inventory of replacement parts, repairs, and services (NEW)
+- **Pages** - Dynamic content pages with customizable components
 
-### `start`
+## 📚 Documentation
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+Detailed API documentation is available in the `/docs` folder:
 
-```
-npm run start
-# or
-yarn start
-```
+- [API Overview](./docs/API_OVERVIEW.md) - Complete API reference
+- [Device Type API](./docs/DEVICE-TYPE.md) - Device types management
+- [Service API](./docs/SERVICE.md) - Services and pricing
+- [Subscription API](./docs/SUBSCRIPTION.md) - Subscription plans
+- [Part API](./docs/PART.md) - Parts, repairs, and services inventory
+- [Page API](./docs/PAGE.md) - Dynamic pages management
 
-### `build`
+## 🛠️ Available Scripts
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
+### Development
+```bash
+npm run dev          # Start development server with auto-reload
+npm run develop      # Alternative: start development server
 ```
 
-## 📚 Learn more
+### Production
+```bash
+npm run build        # Build admin panel
+npm run start        # Start production server
+```
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+### Database
+```bash
+npm run seed         # Seed initial device types, services, and subscriptions
+npm run seed:parts   # Seed parts, repairs, and services inventory
+```
+
+### Other
+```bash
+npm run console      # Access Strapi console
+npm run deploy       # Deploy to Strapi Cloud
+npm run upgrade      # Upgrade Strapi to latest version
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js >= 20.0.0 and <= 24.x.x
+- npm >= 6.0.0
+
+### Installation
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start the development server:
+```bash
+npm run dev
+```
+
+3. Access the admin panel at:
+```
+http://localhost:1337/admin
+```
+
+### Seeding Data
+
+To populate the database with initial data:
+
+```bash
+# Seed device types, services, and subscriptions
+npm run seed
+
+# Seed parts and repairs inventory
+npm run seed:parts
+```
+
+## 📦 Collection: Parts
+
+The Parts collection manages all replacement parts, repairs, and services. It's organized by:
+
+**Types:**
+- Parts - Replacement components
+- Repair - Repair services
+- Service - Installation and maintenance services
+
+**Categories:**
+- Basic Filters
+- Additional Filters
+- Electrical Components
+- Other Items
+- Pipe & Fittings
+- Core (for services)
+
+### Quick Example
+
+Access parts through the API:
+
+```bash
+# Get all active parts
+curl http://localhost:1337/api/parts?filters[status][$eq]=ACTIVE
+
+# Get all electrical components
+curl http://localhost:1337/api/parts?filters[category][$eq]="Electrical Components"
+
+# Get all repair services
+curl http://localhost:1337/api/parts?filters[type][$eq]=Repair
+```
+
+See [Part API Documentation](./docs/PART.md) for complete details.
+
+## 🌐 API Base URL
+
+```
+http://localhost:1337/api
+```
+
+## 🔐 Authentication
+
+Currently runs without authentication. For production, configure:
+- JWT tokens
+- API keys
+- OAuth2
+
+## 📊 Database
+
+Uses SQLite for development (better-sqlite3 v12.4.1)
+
+Database files are stored in the database directory. Clear and reseed as needed for development.
+
+## 🏗️ Project Structure
+
+```
+serwise-strapi-app/
+├── config/              # Strapi configuration files
+├── database/            # Database migrations
+├── docs/                # API documentation
+├── public/              # Public assets
+├── scripts/             # Seed scripts
+├── src/
+│   ├── admin/          # Custom admin panel
+│   ├── api/            # API routes and models
+│   │   ├── device-type/
+│   │   ├── service/
+│   │   ├── subscription/
+│   │   └── part/       # NEW: Parts collection
+│   ├── components/     # Reusable content components
+│   ├── extensions/     # Plugin extensions
+│   └── index.ts        # Entry point
+└── types/              # TypeScript type definitions
+```
+
+## 🔧 Related Technologies
+
+- **Strapi** v5.33.4 - Headless CMS
+- **TypeScript** - Type-safe development
+- **SQLite** - Development database
+- **Node.js** - Runtime environment
+
+## 📖 Learn More
+
+- [Strapi Documentation](https://docs.strapi.io)
+- [Strapi Community](https://community.strapi.io)
+- [ServiceSmith API Reference](./docs/API_OVERVIEW.md)
+
+## ✨ Features
+
+- ✅ Multiple content types with rich fields
+- ✅ Relation management (one-to-many, many-to-many)
+- ✅ Draft and publish workflow
+- ✅ Advanced filtering and search
+- ✅ API documentation
+- ✅ Database seeding scripts
+- ✅ TypeScript support
+
+## 🤝 Support
+
+For issues or questions:
+1. Check the documentation in `/docs`
+2. Review the Strapi documentation
+3. Check the project logs in the terminal
 
 Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
 

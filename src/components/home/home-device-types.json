@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_home_device_types",
+  "info": {
+    "displayName": "home_device_types"
+  },
+  "options": {},
+  "attributes": {
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    },
+    "more_devices": {
+      "type": "component",
+      "component": "common.title-background",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_common_button_link_backgrounds",
+  "info": {
+    "displayName": "button_link_background_border"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "bg_color": {
+      "type": "string"
+    },
+    "text_color": {
+      "type": "string"
+    },
+    "action_link": {
+      "type": "string"
+    },
+    "border_color": {
+      "type": "string"
+    },
+    "border_width": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5
+    },
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

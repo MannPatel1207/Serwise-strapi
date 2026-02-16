@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_home_home_wallets",
+  "info": {
+    "displayName": "home_wallet"
+  },
+  "options": {},
+  "attributes": {
+    "ads": {
+      "type": "component",
+      "component": "common.ads",
+      "repeatable": false
+    },
+    "cta_button": {
+      "type": "component",
+      "component": "common.button-link-background",
+      "repeatable": false
+    },
+    "border_color": {
+      "type": "string"
+    },
+    "border_width": {
+      "type": "integer",
+      "min": 0,
+      "max": 5
+    },
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

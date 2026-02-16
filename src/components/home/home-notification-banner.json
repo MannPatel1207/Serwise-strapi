@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_home_home_notification_banners",
+  "info": {
+    "displayName": "home_notification_banner"
+  },
+  "options": {},
+  "attributes": {
+    "show_component": {
+      "type": "boolean"
+    },
+    "notification_banner": {
+      "type": "component",
+      "component": "banner.banner-title-cta",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

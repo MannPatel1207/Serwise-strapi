@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parts",
+  "info": {
+    "singularName": "part",
+    "pluralName": "parts",
+    "displayName": "Part"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Basic Filters",
+        "Additional Filters",
+        "Electrical Components",
+        "Other Items",
+        "Pipe & Fittings",
+        "Core"
+      ],
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Parts",
+        "Repair",
+        "Service"
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "quantity": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "ACTIVE",
+        "DRAFT",
+        "DISCONTINUED"
+      ],
+      "required": true,
+      "default": "DRAFT"
+    }
+  }
+}

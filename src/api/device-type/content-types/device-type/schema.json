@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "device_types",
+  "info": {
+    "singularName": "device-type",
+    "pluralName": "device-types",
+    "displayName": "Device Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "ACTIVE",
+        "DRAFT",
+        "EXPERIMENTAL"
+      ],
+      "required": true,
+      "default": "DRAFT"
+    },
+    "action_link": {
+      "type": "string",
+      "required": false
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "device_type"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subscription.subscription"
+    }
+  }
+}

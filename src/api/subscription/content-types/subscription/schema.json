@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "Subscription"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "plan_type": {
+      "type": "enumeration",
+      "enum": [
+        "Normal Plan",
+        "UV Plan",
+        "UF Plan"
+      ],
+      "required": true
+    },
+    "duration": {
+      "type": "enumeration",
+      "enum": [
+        "monthly_3",
+        "monthly_4",
+        "monthly_6",
+        "one_time"
+      ],
+      "required": true
+    },
+    "cost": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "sales_subscribed": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "sales_non_subscribed": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "profit_subscribed": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "profit_non_subscribed": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "price_of_subscription": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "device_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::device-type.device-type"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service"
+    }
+  }
+}

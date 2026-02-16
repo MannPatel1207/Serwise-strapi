@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_common_title_backgrounds",
+  "info": {
+    "displayName": "title_background"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text_color": {
+      "type": "string"
+    },
+    "background_color": {
+      "type": "string"
+    },
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

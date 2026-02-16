@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_common_ads",
+  "info": {
+    "displayName": "ads"
+  },
+  "options": {},
+  "attributes": {
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

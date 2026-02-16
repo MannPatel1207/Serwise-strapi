@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Pages"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "handle": {
+      "type": "string"
+    },
+    "page_title": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "home.home-wallet",
+        "home.home-navbar",
+        "home.home-device-types",
+        "home.home-notification-banner"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_home_navbars",
+  "info": {
+    "displayName": "home_navbar"
+  },
+  "options": {},
+  "attributes": {
+    "menu": {
+      "type": "component",
+      "component": "common.button-link-background",
+      "repeatable": true
+    },
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

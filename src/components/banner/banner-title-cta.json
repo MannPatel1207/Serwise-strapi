@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_banner_banner_title_ctas",
+  "info": {
+    "displayName": "banner_title_cta"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "component",
+      "component": "common.title-background",
+      "repeatable": false
+    },
+    "sub_title": {
+      "type": "component",
+      "component": "common.title-background",
+      "repeatable": false
+    },
+    "cta": {
+      "type": "component",
+      "component": "common.button-link-background",
+      "repeatable": true
+    },
+    "background_color": {
+      "type": "string"
+    },
+    "show_component": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

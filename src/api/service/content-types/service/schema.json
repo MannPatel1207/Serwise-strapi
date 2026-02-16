@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "face_value": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "expense": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "provider_cut": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "revenue": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "device_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::device-type.device-type",
+      "inversedBy": "services"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subscription.subscription"
+    }
+  }
+}
