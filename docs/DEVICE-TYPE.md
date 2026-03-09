@@ -12,6 +12,8 @@ The Device Type API manages different types of devices available in the system. 
 | `id` | Integer | Auto | Unique identifier |
 | `type` | String | ✓ | Device type name (unique) |
 | `image` | Media | ✗ | Device type image (images only) |
+| `icon` | Media | ✗ | Device type icon (images only) |
+| `thumbnail` | Media | ✗ | Device type thumbnail (images only) |
 | `status` | Enum | ✓ | Status: `ACTIVE`, `DRAFT`, `EXPERIMENTAL` (default: `DRAFT`) |
 | `action_link` | String | ✗ | Action/redirect link for this device type |
 | `services` | Relation | ✗ | One-to-many relation to Services |

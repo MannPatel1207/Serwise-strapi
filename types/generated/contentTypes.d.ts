@@ -445,6 +445,7 @@ export interface ApiDeviceTypeDeviceType extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    icon: Schema.Attribute.Media<'images'>;
     image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -461,6 +462,7 @@ export interface ApiDeviceTypeDeviceType extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::subscription.subscription'
     >;
+    thumbnail: Schema.Attribute.Media<'images'>;
     type: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
