@@ -455,9 +455,7 @@ export interface ApiDeviceTypeDeviceType extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
-    status: Schema.Attribute.Enumeration<['ACTIVE', 'DRAFT', 'EXPERIMENTAL']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'DRAFT'>;
+    state: Schema.Attribute.Enumeration<['ACTIVE', 'EXPERIMENTAL', 'DRAFT']>;
     subscriptions: Schema.Attribute.Relation<
       'manyToMany',
       'api::subscription.subscription'

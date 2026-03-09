@@ -40,16 +40,6 @@
         "images"
       ]
     },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "ACTIVE",
-        "DRAFT",
-        "EXPERIMENTAL"
-      ],
-      "required": true,
-      "default": "DRAFT"
-    },
     "action_link": {
       "type": "string",
       "required": false
@@ -64,6 +54,14 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::subscription.subscription"
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "ACTIVE",
+        "EXPERIMENTAL",
+        "DRAFT"
+      ]
     }
   }
 }
