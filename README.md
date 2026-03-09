@@ -1,5 +1,7 @@
 # 🚀 ServiceSmith Strapi Application
 
+New Strapi
+
 A comprehensive Strapi-based backend for managing water purification device types, services, subscriptions, parts inventory, and dynamic pages.
 
 ## 📋 Project Overview
