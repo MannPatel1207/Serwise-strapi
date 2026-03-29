@@ -26,7 +26,7 @@ The Service API manages services available for different device types. Services 
 
 ### List All Services
 ```http
-GET /api/services
+GET /content-manager/collection-types/api::service.service
 ```
 
 #### Query Parameters
@@ -72,7 +72,7 @@ GET /api/services
 
 ### Get Single Service
 ```http
-GET /api/services/:id
+GET /content-manager/collection-types/api::service.service/:documentId
 ```
 
 #### Query Parameters
@@ -102,7 +102,7 @@ GET /api/services/:id
 
 ### Create Service
 ```http
-POST /api/services
+POST /content-manager/collection-types/api::service.service
 Content-Type: application/json
 ```
 
@@ -126,7 +126,7 @@ Returns the created Service object with generated ID.
 
 ### Update Service
 ```http
-PUT /api/services/:id
+PUT /content-manager/collection-types/api::service.service/:documentId
 Content-Type: application/json
 ```
 
@@ -143,7 +143,7 @@ Content-Type: application/json
 
 ### Delete Service
 ```http
-DELETE /api/services/:id
+DELETE /content-manager/collection-types/api::service.service/:documentId
 ```
 
 ## Frontend Implementation Examples
@@ -152,7 +152,7 @@ DELETE /api/services/:id
 ```typescript
 // Fetch all services
 const fetchServices = async (deviceTypeId?: number) => {
-  let url = 'http://localhost:1337/api/services?populate=*';
+  let url = 'http://localhost:1337/content-manager/collection-types/api::service.service?populate=*';
   if (deviceTypeId) {
     url += `&filters[device_type][id][$eq]=${deviceTypeId}`;
   }
@@ -164,7 +164,7 @@ const fetchServices = async (deviceTypeId?: number) => {
 // Fetch single service
 const fetchService = async (id: number) => {
   const response = await fetch(
-    `http://localhost:1337/api/services/${id}?populate=*`
+    `http://localhost:1337/content-manager/collection-types/api::service.service/${documentId}?populate=*`
   );
   const json = await response.json();
   return json.data;
@@ -172,7 +172,7 @@ const fetchService = async (id: number) => {
 
 // Create service
 const createService = async (data: ServiceData) => {
-  const response = await fetch('http://localhost:1337/api/services', {
+  const response = await fetch('http://localhost:1337/content-manager/collection-types/api::service.service', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data })
@@ -183,7 +183,7 @@ const createService = async (data: ServiceData) => {
 // Update service
 const updateService = async (id: number, data: Partial<ServiceData>) => {
   const response = await fetch(
-    `http://localhost:1337/api/services/${id}`,
+    `http://localhost:1337/content-manager/collection-types/api::service.service/${documentId}`,
     {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -269,17 +269,17 @@ query GetServiceById($id: ID!) {
 
 ### Get Services for Specific Device Type
 ```
-GET /api/services?filters[device_type][id][$eq]=1
+GET /content-manager/collection-types/api::service.service?filters[device_type][id][$eq]=1
 ```
 
 ### Search Services by Name
 ```
-GET /api/services?filters[name][$contains]=Data
+GET /content-manager/collection-types/api::service.service?filters[name][$contains]=Data
 ```
 
 ### Get High-Value Services
 ```
-GET /api/services?filters[face_value][$gte]=50&sort=face_value:desc
+GET /content-manager/collection-types/api::service.service?filters[face_value][$gte]=50&sort=face_value:desc
 ```
 
 ## Financial Calculations

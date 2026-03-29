@@ -73,7 +73,7 @@ The Part API manages all parts, repairs, and services available in the system. P
 
 ### List All Parts
 ```http
-GET /api/parts
+GET /content-manager/collection-types/api::part.part
 ```
 
 #### Query Parameters
@@ -122,7 +122,7 @@ GET /api/parts
 
 ### Get Single Part
 ```http
-GET /api/parts/:id
+GET /content-manager/collection-types/api::part.part/:documentId
 ```
 
 #### Response Example
@@ -148,7 +148,7 @@ GET /api/parts/:id
 
 ### Create Part
 ```http
-POST /api/parts
+POST /content-manager/collection-types/api::part.part
 Content-Type: application/json
 Authorization: Bearer YOUR_API_TOKEN
 ```
@@ -191,7 +191,7 @@ Authorization: Bearer YOUR_API_TOKEN
 
 ### Update Part
 ```http
-PUT /api/parts/:id
+PUT /content-manager/collection-types/api::part.part/:documentId
 Content-Type: application/json
 Authorization: Bearer YOUR_API_TOKEN
 ```
@@ -209,7 +209,7 @@ Authorization: Bearer YOUR_API_TOKEN
 
 ### Delete Part
 ```http
-DELETE /api/parts/:id
+DELETE /content-manager/collection-types/api::part.part/:documentId
 Authorization: Bearer YOUR_API_TOKEN
 ```
 
@@ -217,37 +217,37 @@ Authorization: Bearer YOUR_API_TOKEN
 
 ### Get All Active Parts
 ```http
-GET /api/parts?filters[status][$eq]=ACTIVE&pagination[pageSize]=100
+GET /content-manager/collection-types/api::part.part?filters[status][$eq]=ACTIVE&pagination[pageSize]=100
 ```
 
 ### Get All Parts by Type
 ```http
-GET /api/parts?filters[type][$eq]=Parts&sort=category:asc
+GET /content-manager/collection-types/api::part.part?filters[type][$eq]=Parts&sort=category:asc
 ```
 
 ### Get All Filters (Basic and Additional)
 ```http
-GET /api/parts?filters[$or][0][category][$eq]=Basic Filters&filters[$or][1][category][$eq]=Additional Filters
+GET /content-manager/collection-types/api::part.part?filters[$or][0][category][$eq]=Basic Filters&filters[$or][1][category][$eq]=Additional Filters
 ```
 
 ### Get All Parts by Price Range
 ```http
-GET /api/parts?filters[price][$gte]=10&filters[price][$lte]=50&sort=price:asc
+GET /content-manager/collection-types/api::part.part?filters[price][$gte]=10&filters[price][$lte]=50&sort=price:asc
 ```
 
 ### Get Electrical Components Only
 ```http
-GET /api/parts?filters[category][$eq]=Electrical Components&filters[status][$eq]=ACTIVE
+GET /content-manager/collection-types/api::part.part?filters[category][$eq]=Electrical Components&filters[status][$eq]=ACTIVE
 ```
 
 ### Get All Repair Services
 ```http
-GET /api/parts?filters[type][$eq]=Repair
+GET /content-manager/collection-types/api::part.part?filters[type][$eq]=Repair
 ```
 
 ### Get All Core Services
 ```http
-GET /api/parts?filters[type][$eq]=Service&filters[category][$eq]=Core
+GET /content-manager/collection-types/api::part.part?filters[type][$eq]=Service&filters[category][$eq]=Core
 ```
 
 ## Seeding Data

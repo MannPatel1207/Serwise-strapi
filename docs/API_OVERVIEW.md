@@ -26,22 +26,22 @@ This API provides access to five main content types:
 ### Filtering
 All endpoints support advanced filtering:
 ```
-GET /api/device-types?filters[status][$eq]=ACTIVE
+GET /content-manager/collection-types/api::device-type.device-type?filters[status][$eq]=ACTIVE
 ```
 
 ### Sorting
 ```
-GET /api/services?sort=name:asc
+GET /content-manager/collection-types/api::service.service?sort=name:asc
 ```
 
 ### Pagination
 ```
-GET /api/services?pagination[page]=1&pagination[pageSize]=10
+GET /content-manager/collection-types/api::service.service?pagination[page]=1&pagination[pageSize]=10
 ```
 
 ### Population (Relations)
 ```
-GET /api/services?populate=device_type,subscriptions
+GET /content-manager/collection-types/api::service.service?populate=device_type,subscriptions
 ```
 
 ## Request/Response Format
@@ -130,7 +130,7 @@ Page
 
 ### 1. Create a Device Type
 ```http
-POST /api/device-types
+POST /content-manager/collection-types/api::device-type.device-type
 Content-Type: application/json
 
 {
@@ -143,7 +143,7 @@ Content-Type: application/json
 
 ### 2. Create a Service for the Device Type
 ```http
-POST /api/services
+POST /content-manager/collection-types/api::service.service
 Content-Type: application/json
 
 {
@@ -157,7 +157,7 @@ Content-Type: application/json
 
 ### 3. Create a Subscription
 ```http
-POST /api/subscriptions
+POST /content-manager/collection-types/api::subscription.subscription
 Content-Type: application/json
 
 {
@@ -175,7 +175,7 @@ Content-Type: application/json
 
 ### 4. Create a Page
 ```http
-POST /api/pages
+POST /content-manager/collection-types/api::page.page
 Content-Type: application/json
 
 {
@@ -198,29 +198,29 @@ Content-Type: application/json
 
 ### 5. Fetch with Relations
 ```http
-GET /api/pages?filters[handle][$eq]=home&populate=*
+GET /content-manager/collection-types/api::page.page?filters[handle][$eq]=home&populate=*
 ```
 
 ## Common Patterns
 
 ### Get All Active Items
 ```
-GET /api/device-types?filters[status][$eq]=ACTIVE&populate=*
+GET /content-manager/collection-types/api::device-type.device-type?filters[status][$eq]=ACTIVE&populate=*
 ```
 
 ### Search with Multiple Filters
 ```
-GET /api/services?filters[name][$contains]=SMS&filters[face_value][$gte]=10
+GET /content-manager/collection-types/api::service.service?filters[name][$contains]=SMS&filters[face_value][$gte]=10
 ```
 
 ### Paginate Large Result Sets
 ```
-GET /api/subscriptions?pagination[page]=2&pagination[pageSize]=10
+GET /content-manager/collection-types/api::subscription.subscription?pagination[page]=2&pagination[pageSize]=10
 ```
 
 ### Get Related Data
 ```
-GET /api/services/1?populate[device_type]=*&populate[subscriptions]=*
+GET /content-manager/collection-types/api::service.service/1?populate[device_type]=*&populate[subscriptions]=*
 ```
 
 ## Error Handling
@@ -273,17 +273,17 @@ CORS is enabled. Configure allowed origins in production.
 
 1. **Always use population** - Include related data to avoid N+1 queries
    ```
-   GET /api/services?populate=device_type,subscriptions
+   GET /content-manager/collection-types/api::service.service?populate=device_type,subscriptions
    ```
 
 2. **Use pagination** - Limit result sets
    ```
-   GET /api/subscriptions?pagination[pageSize]=20
+   GET /content-manager/collection-types/api::subscription.subscription?pagination[pageSize]=20
    ```
 
 3. **Filter efficiently** - Apply filters at query level
    ```
-   GET /api/services?filters[device_type][id][$eq]=1
+   GET /content-manager/collection-types/api::service.service?filters[device_type][id][$eq]=1
    ```
 
 4. **Handle errors** - Implement proper error handling

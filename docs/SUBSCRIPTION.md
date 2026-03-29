@@ -43,7 +43,7 @@ The Subscription API manages subscription plans available in the system. Subscri
 
 ### List All Subscriptions
 ```http
-GET /api/subscriptions
+GET /content-manager/collection-types/api::subscription.subscription
 ```
 
 #### Query Parameters
@@ -113,7 +113,7 @@ GET /api/subscriptions
 
 ### Get Single Subscription
 ```http
-GET /api/subscriptions/:id
+GET /content-manager/collection-types/api::subscription.subscription/:documentId
 ```
 
 #### Query Parameters
@@ -143,7 +143,7 @@ GET /api/subscriptions/:id
 
 ### Create Subscription
 ```http
-POST /api/subscriptions
+POST /content-manager/collection-types/api::subscription.subscription
 Content-Type: application/json
 ```
 
@@ -168,7 +168,7 @@ Returns the created Subscription object with generated ID.
 
 ### Update Subscription
 ```http
-PUT /api/subscriptions/:id
+PUT /content-manager/collection-types/api::subscription.subscription/:documentId
 Content-Type: application/json
 ```
 
@@ -186,7 +186,7 @@ Content-Type: application/json
 
 ### Delete Subscription
 ```http
-DELETE /api/subscriptions/:id
+DELETE /content-manager/collection-types/api::subscription.subscription/:documentId
 ```
 
 ## Frontend Implementation Examples
@@ -199,7 +199,7 @@ const fetchSubscriptions = async (
   duration?: string,
   minPrice?: number
 ) => {
-  let url = 'http://localhost:1337/api/subscriptions?populate=*';
+  let url = 'http://localhost:1337/content-manager/collection-types/api::subscription.subscription?populate=*';
   
   if (planType) {
     url += `&filters[plan_type][$eq]=${planType}`;
@@ -219,7 +219,7 @@ const fetchSubscriptions = async (
 // Fetch single subscription
 const fetchSubscription = async (id: number) => {
   const response = await fetch(
-    `http://localhost:1337/api/subscriptions/${id}?populate=*`
+    `http://localhost:1337/content-manager/collection-types/api::subscription.subscription/${documentId}?populate=*`
   );
   const json = await response.json();
   return json.data;
@@ -227,7 +227,7 @@ const fetchSubscription = async (id: number) => {
 
 // Create subscription
 const createSubscription = async (data: SubscriptionData) => {
-  const response = await fetch('http://localhost:1337/api/subscriptions', {
+  const response = await fetch('http://localhost:1337/content-manager/collection-types/api::subscription.subscription', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data })
@@ -241,7 +241,7 @@ const updateSubscription = async (
   data: Partial<SubscriptionData>
 ) => {
   const response = await fetch(
-    `http://localhost:1337/api/subscriptions/${id}`,
+    `http://localhost:1337/content-manager/collection-types/api::subscription.subscription/${documentId}`,
     {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -369,22 +369,22 @@ query GetSubscriptionsByPlanType($planType: String!) {
 
 ### Get Normal Plan Subscriptions
 ```
-GET /api/subscriptions?filters[plan_type][$eq]=Normal Plan
+GET /content-manager/collection-types/api::subscription.subscription?filters[plan_type][$eq]=Normal Plan
 ```
 
 ### Get 3-Month Subscriptions
 ```
-GET /api/subscriptions?filters[duration][$eq]=monthly_3
+GET /content-manager/collection-types/api::subscription.subscription?filters[duration][$eq]=monthly_3
 ```
 
 ### Get UV Plan 6-Month Subscriptions
 ```
-GET /api/subscriptions?filters[plan_type][$eq]=UV Plan&filters[duration][$eq]=monthly_6
+GET /content-manager/collection-types/api::subscription.subscription?filters[plan_type][$eq]=UV Plan&filters[duration][$eq]=monthly_6
 ```
 
 ### Get Affordable Subscriptions (Under $50)
 ```
-GET /api/subscriptions?filters[price_of_subscription][$lt]=50&sort=price_of_subscription:asc
+GET /content-manager/collection-types/api::subscription.subscription?filters[price_of_subscription][$lt]=50&sort=price_of_subscription:asc
 ```
 
 ## Financial Metrics

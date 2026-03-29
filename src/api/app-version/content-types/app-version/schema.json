@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "app_version",
+  "info": {
+    "singularName": "app-version",
+    "pluralName": "app-versions",
+    "displayName": "App Version"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "serwise_version": {
+      "type": "string"
+    },
+    "serwise_min_required_version": {
+      "type": "string"
+    },
+    "serwise_apk": {
+      "allowedTypes": ["files"],
+      "type": "media",
+      "multiple": false
+    },
+    "radix_version": {
+      "type": "string"
+    },
+    "radix_min_required_version": {
+      "type": "string"
+    },
+    "radix_apk": {
+      "allowedTypes": ["files"],
+      "type": "media",
+      "multiple": false
+    },
+    "is_forced": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

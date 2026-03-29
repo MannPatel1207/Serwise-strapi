@@ -31,7 +31,7 @@ The following components can be used in the `blocks` dynamic zone:
 
 ### List All Pages
 ```http
-GET /api/pages
+GET /content-manager/collection-types/api::page.page
 ```
 
 #### Query Parameters
@@ -96,7 +96,7 @@ GET /api/pages
 
 ### Get Single Page
 ```http
-GET /api/pages/:id
+GET /content-manager/collection-types/api::page.page/:documentId
 ```
 
 #### Query Parameters
@@ -123,7 +123,7 @@ GET /api/pages/:id
 
 ### Create Page
 ```http
-POST /api/pages
+POST /content-manager/collection-types/api::page.page
 Content-Type: application/json
 ```
 
@@ -161,7 +161,7 @@ Returns the created Page object with generated ID.
 
 ### Update Page
 ```http
-PUT /api/pages/:id
+PUT /content-manager/collection-types/api::page.page/:documentId
 Content-Type: application/json
 ```
 
@@ -182,7 +182,7 @@ Content-Type: application/json
 
 ### Delete Page
 ```http
-DELETE /api/pages/:id
+DELETE /content-manager/collection-types/api::page.page/:documentId
 ```
 
 ## Component Specifications
@@ -289,7 +289,7 @@ interface PageData {
 // Fetch page by handle
 const fetchPageByHandle = async (handle: string): Promise<PageData> => {
   const response = await fetch(
-    `http://localhost:1337/api/pages?filters[handle][$eq]=${handle}&populate=*`
+    `http://localhost:1337/content-manager/collection-types/api::page.page?filters[handle][$eq]=${handle}&populate=*`
   );
   const json = await response.json();
   return json.data[0];
@@ -298,7 +298,7 @@ const fetchPageByHandle = async (handle: string): Promise<PageData> => {
 // Fetch page by ID
 const fetchPage = async (id: number): Promise<PageData> => {
   const response = await fetch(
-    `http://localhost:1337/api/pages/${id}?populate=*`
+    `http://localhost:1337/content-manager/collection-types/api::page.page/${documentId}?populate=*`
   );
   const json = await response.json();
   return json.data;
@@ -310,7 +310,7 @@ const createPage = async (data: {
   page_title: string;
   blocks: PageBlock[];
 }) => {
-  const response = await fetch('http://localhost:1337/api/pages', {
+  const response = await fetch('http://localhost:1337/content-manager/collection-types/api::page.page', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data })
@@ -327,7 +327,7 @@ const updatePage = async (
     blocks: PageBlock[];
   }>
 ) => {
-  const response = await fetch(`http://localhost:1337/api/pages/${id}`, {
+  const response = await fetch(`http://localhost:1337/content-manager/collection-types/api::page.page/${documentId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data })

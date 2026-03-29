@@ -121,6 +121,21 @@ export interface HomeHomeWallet extends Struct.ComponentSchema {
   };
 }
 
+export interface SubscriptionServiceMapping extends Struct.ComponentSchema {
+  collectionName: 'components_subscription_service_mappings';
+  info: {
+    description: '';
+    displayName: 'Service Mapping';
+  };
+  attributes: {
+    parts: Schema.Attribute.Relation<'manyToMany', 'api::part.part'>;
+    providerCut: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    usageIndex: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -132,6 +147,7 @@ declare module '@strapi/strapi' {
       'home.home-navbar': HomeHomeNavbar;
       'home.home-notification-banner': HomeHomeNotificationBanner;
       'home.home-wallet': HomeHomeWallet;
+      'subscription.service-mapping': SubscriptionServiceMapping;
     }
   }
 }

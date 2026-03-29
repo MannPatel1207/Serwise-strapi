@@ -18,51 +18,58 @@
     "plan_type": {
       "type": "enumeration",
       "enum": [
-        "Normal Plan",
-        "UV Plan",
-        "UF Plan"
+        "Basic",
+        "Standard",
+        "Addon"
       ],
       "required": true
     },
-    "duration": {
-      "type": "enumeration",
-      "enum": [
-        "monthly_3",
-        "monthly_4",
-        "monthly_6",
-        "one_time"
-      ],
-      "required": true
+    "totalServices": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "serviceMapping": {
+      "type": "component",
+      "repeatable": true,
+      "component": "subscription.service-mapping"
     },
     "cost": {
       "type": "decimal",
       "required": true,
       "min": 0
     },
-    "sales_subscribed": {
-      "type": "decimal",
-      "required": false,
-      "min": 0
-    },
-    "sales_non_subscribed": {
-      "type": "decimal",
-      "required": false,
-      "min": 0
-    },
-    "profit_subscribed": {
-      "type": "decimal",
-      "required": false,
-      "min": 0
-    },
-    "profit_non_subscribed": {
-      "type": "decimal",
-      "required": false,
-      "min": 0
-    },
-    "price_of_subscription": {
+    "sub_sales": {
       "type": "decimal",
       "required": true,
       "min": 0
+    },
+    "non_sub_sales": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "sub_profit": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "non_sub_profit": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "maxDiscount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "lockInPeriod": {
+      "type": "integer",
+      "default": 0
+    },
+    "validityDuration": {
+      "type": "integer",
+      "required": true
     },
     "description": {
       "type": "text",
@@ -72,11 +79,6 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::device-type.device-type"
-    },
-    "services": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::service.service"
     }
   }
 }

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_subscription_service_mappings",
+  "info": {
+    "displayName": "Service Mapping",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "usageIndex": {
+      "type": "integer",
+      "required": true
+    },
+    "providerCut": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "parts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::part.part"
+    }
+  }
+}

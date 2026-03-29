@@ -14,7 +14,7 @@ The Device Type API manages different types of devices available in the system. 
 | `image` | Media | ✗ | Device type image (images only) |
 | `icon` | Media | ✗ | Device type icon (images only) |
 | `thumbnail` | Media | ✗ | Device type thumbnail (images only) |
-| `status` | Enum | ✓ | Status: `ACTIVE`, `DRAFT`, `EXPERIMENTAL` (default: `DRAFT`) |
+| `state` | Enum | ✓ | state: `ACTIVE`, `DRAFT`, `EXPERIMENTAL` (default: `DRAFT`) |
 | `action_link` | String | ✗ | Action/redirect link for this device type |
 | `services` | Relation | ✗ | One-to-many relation to Services |
 | `subscriptions` | Relation | ✗ | Many-to-many relation to Subscriptions |
@@ -26,14 +26,14 @@ The Device Type API manages different types of devices available in the system. 
 
 ### List All Device Types
 ```http
-GET /api/device-types
+GET /content-manager/collection-types/api::device-type.device-type
 ```
 
 #### Query Parameters
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `populate` | String | Relations to populate (e.g., `services,subscriptions`) |
-| `filters[status][$eq]` | String | Filter by status |
+| `filters[state][$eq]` | String | Filter by state |
 | `sort` | String | Sort by field (e.g., `type:asc`) |
 | `pagination[page]` | Integer | Page number |
 | `pagination[pageSize]` | Integer | Items per page |
@@ -46,7 +46,7 @@ GET /api/device-types
       "id": 1,
       "attributes": {
         "type": "Mobile",
-        "status": "ACTIVE",
+        "state": "ACTIVE",
         "action_link": "/mobile-details",
         "image": {
           "data": {
@@ -76,7 +76,7 @@ GET /api/device-types
 
 ### Get Single Device Type
 ```http
-GET /api/device-types/:id
+GET /content-manager/collection-types/api::device-type.device-type/:documentId
 ```
 
 #### Query Parameters
@@ -91,7 +91,7 @@ GET /api/device-types/:id
     "id": 1,
     "attributes": {
       "type": "Mobile",
-      "status": "ACTIVE",
+      "state": "ACTIVE",
       "action_link": "/mobile-details",
       "image": { "data": { ... } },
       "services": {
@@ -110,7 +110,7 @@ GET /api/device-types/:id
 
 ### Create Device Type
 ```http
-POST /api/device-types
+POST /content-manager/collection-types/api::device-type.device-type
 Content-Type: application/json
 ```
 
@@ -119,7 +119,7 @@ Content-Type: application/json
 {
   "data": {
     "type": "Tablet",
-    "status": "DRAFT",
+    "state": "DRAFT",
     "action_link": "/tablet-details"
   }
 }
@@ -130,7 +130,7 @@ Returns the created Device Type object with generated ID.
 
 ### Update Device Type
 ```http
-PUT /api/device-types/:id
+PUT /content-manager/collection-types/api::device-type.device-type/:documentId
 Content-Type: application/json
 ```
 
@@ -139,7 +139,7 @@ Content-Type: application/json
 {
   "data": {
     "type": "Tablet Pro",
-    "status": "ACTIVE",
+    "state": "ACTIVE",
     "action_link": "/tablet-pro-details"
   }
 }
@@ -147,7 +147,7 @@ Content-Type: application/json
 
 ### Delete Device Type
 ```http
-DELETE /api/device-types/:id
+DELETE /content-manager/collection-types/api::device-type.device-type/:documentId
 ```
 
 ## Frontend Implementation Examples
@@ -157,7 +157,7 @@ DELETE /api/device-types/:id
 // Fetch device types
 const fetchDeviceTypes = async () => {
   const response = await fetch(
-    'http://localhost:1337/api/device-types?populate=*'
+    'http://localhost:1337/content-manager/collection-types/api::device-type.device-type?populate=*'
   );
   const json = await response.json();
   return json.data;
@@ -165,7 +165,7 @@ const fetchDeviceTypes = async () => {
 
 // Create device type
 const createDeviceType = async (data) => {
-  const response = await fetch('http://localhost:1337/api/device-types', {
+  const response = await fetch('http://localhost:1337/content-manager/collection-types/api::device-type.device-type', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data })
@@ -175,7 +175,7 @@ const createDeviceType = async (data) => {
 
 // Update device type
 const updateDeviceType = async (id, data) => {
-  const response = await fetch(`http://localhost:1337/api/device-types/${id}`, {
+  const response = await fetch(`http://localhost:1337/content-manager/collection-types/api::device-type.device-type/${documentId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data })
@@ -192,7 +192,7 @@ query GetDeviceTypes {
       id
       attributes {
         type
-        status
+        state
         action_link
         image {
           data {
@@ -233,7 +233,7 @@ query GetDeviceTypeById($id: ID!) {
       id
       attributes {
         type
-        status
+        state
         action_link
         image { data { id } }
         services { data { id } }
@@ -248,12 +248,12 @@ query GetDeviceTypeById($id: ID!) {
 
 ### Get ACTIVE Device Types
 ```
-GET /api/device-types?filters[status][$eq]=ACTIVE
+GET /content-manager/collection-types/api::device-type.device-type?filters[state][$eq]=ACTIVE
 ```
 
 ### Get with Specific Populate
 ```
-GET /api/device-types?populate[services][populate][0]=device_type&populate[subscriptions]=*
+GET /content-manager/collection-types/api::device-type.device-type?populate[services][populate][0]=device_type&populate[subscriptions]=*
 ```
 
 ## Notes
