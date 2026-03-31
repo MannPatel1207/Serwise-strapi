@@ -1,0 +1,26 @@
+{
+  "name": "provider-whitelist",
+  "version": "1.0.0",
+  "description": "Strapi admin plugin to whitelist, activate and deactivate service providers",
+  "strapi": {
+    "name": "provider-whitelist",
+    "displayName": "Provider Whitelist",
+    "description": "Manage service providers from Strapi admin",
+    "required": false
+  },
+  "main": "./strapi-server.js",
+  "module": "./admin/src/index.tsx",
+  "exports": {
+    "./strapi-admin": "./admin/src/index.tsx",
+    "./strapi-server": "./strapi-server.js"
+  },
+  "author": "ServiceSmith",
+  "dependencies": {
+    "axios": "*"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^5.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}
