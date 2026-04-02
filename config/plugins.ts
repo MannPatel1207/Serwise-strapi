@@ -1,7 +1,9 @@
+import path from 'path';
+
 export default ({ env }) => ({
   upload: {
     config: {
-      provider: 'cloudinary',
+      provider: path.join(process.cwd(), 'src/upload-provider'),
       providerOptions: {
         cloud_name: env('CLOUDINARY_NAME'),
         api_key: env('CLOUDINARY_KEY'),
