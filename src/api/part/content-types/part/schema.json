@@ -18,6 +18,7 @@
     },
     "category": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "Basic Filters",
         "Additional Filters",
@@ -25,17 +26,16 @@
         "Other Items",
         "Pipe & Fittings",
         "Core"
-      ],
-      "required": true
+      ]
     },
     "type": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "Parts",
         "Repair",
         "Service"
-      ],
-      "required": true
+      ]
     },
     "price": {
       "type": "decimal",
@@ -51,15 +51,15 @@
       "type": "text",
       "required": false
     },
-    "status": {
+    "visibility": {
       "type": "enumeration",
+      "required": true,
+      "default": "DRAFT",
       "enum": [
         "ACTIVE",
         "DRAFT",
         "DISCONTINUED"
-      ],
-      "required": true,
-      "default": "DRAFT"
+      ]
     }
   }
 }

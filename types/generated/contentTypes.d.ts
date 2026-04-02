@@ -575,14 +575,16 @@ export interface ApiPartPart extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    status: Schema.Attribute.Enumeration<['ACTIVE', 'DRAFT', 'DISCONTINUED']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'DRAFT'>;
     type: Schema.Attribute.Enumeration<['Parts', 'Repair', 'Service']> &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    visibility: Schema.Attribute.Enumeration<
+      ['ACTIVE', 'DRAFT', 'DISCONTINUED']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'DRAFT'>;
   };
 }
 
