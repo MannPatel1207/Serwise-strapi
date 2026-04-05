@@ -654,6 +654,46 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSignUpBonusSignUpBonus extends Struct.SingleTypeSchema {
+  collectionName: 'sign_up_bonus';
+  info: {
+    displayName: 'Sign Up Bonus';
+    pluralName: 'sign-up-bonuses';
+    singularName: 'sign-up-bonus';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    bonusAmount: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    bonusImage: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sign-up-bonus.sign-up-bonus'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSubscriptionSubscription
   extends Struct.CollectionTypeSchema {
   collectionName: 'subscriptions';
@@ -1260,6 +1300,7 @@ declare module '@strapi/strapi' {
       'api::page.page': ApiPagePage;
       'api::part.part': ApiPartPart;
       'api::service.service': ApiServiceService;
+      'api::sign-up-bonus.sign-up-bonus': ApiSignUpBonusSignUpBonus;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
