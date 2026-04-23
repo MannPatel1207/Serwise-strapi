@@ -3,6 +3,8 @@ const strapi = require('@strapi/strapi');
 // Force Vercel to include these modules and their package.json files in the bundle
 try {
     require('@strapi/content-manager/package.json');
+    require('@strapi/content-releases/package.json');
+    require('@strapi/review-workflows/package.json');
     require('@strapi/content-type-builder/package.json');
     require('@strapi/upload/package.json');
     require('@strapi/i18n/package.json');
