@@ -15,12 +15,19 @@ module.exports = async (req, res) => {
             }
 
             global.strapi = await createStrapi().load();
-            console.log('Strapi loaded successfully');
+            global.strapi.server.mount();
+            console.log('Strapi loaded and mounted successfully');
         }
         
-        await global.strapi.server.httpServer.emit('request', req, res);
+        const handleRequest = global.strapi.server.app.callback();
+        await handleRequest(req, res);
     } catch (error) {
         console.error('Error in Strapi serverless handler:', error);
-        res.status(500).send(error.message);
+        if (res.status) {
+            res.status(500).send(error.message);
+        } else {
+            res.statusCode = 500;
+            res.end(error.message);
+        }
     }
 };
