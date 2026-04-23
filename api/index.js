@@ -33,7 +33,17 @@ module.exports = async (req, res) => {
             global.strapi.server.mount();
             console.log('Strapi loaded and mounted successfully');
         }
+
+        // Redirect root to /admin for convenience
+        if (req.url === '/' || req.url === '') {
+            console.log('Redirecting root request to /admin');
+            res.statusCode = 302;
+            res.setHeader('Location', '/admin');
+            res.end();
+            return;
+        }
         
+        console.log(`Handling request: ${req.method} ${req.url}`);
         const handleRequest = global.strapi.server.app.callback();
         await handleRequest(req, res);
     } catch (error) {
