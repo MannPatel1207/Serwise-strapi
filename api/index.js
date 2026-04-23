@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
             global.strapi = await createStrapi().load();
             global.strapi.server.mount();
             console.log('Strapi loaded and mounted successfully');
+            console.log('Database client:', global.strapi.config.get('database.connection.client'));
         }
 
         // Redirect root to /admin for convenience
