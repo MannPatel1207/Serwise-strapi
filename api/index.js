@@ -1,8 +1,26 @@
 const strapi = require('@strapi/strapi');
 
 module.exports = async (req, res) => {
-    if (!global.strapi) {
-        global.strapi = await strapi().load();
+    try {
+        if (!global.strapi) {
+            console.log('Initializing Strapi...');
+            const createStrapi = strapi.createStrapi || strapi.default?.createStrapi || strapi;
+            
+            if (typeof createStrapi !== 'function') {
+                console.error('Strapi initialization failed: createStrapi is not a function', {
+                    exportedKeys: Object.keys(strapi),
+                    type: typeof strapi
+                });
+                throw new TypeError('strapi.createStrapi is not a function');
+            }
+
+            global.strapi = await createStrapi().load();
+            console.log('Strapi loaded successfully');
+        }
+        
+        await global.strapi.server.httpServer.emit('request', req, res);
+    } catch (error) {
+        console.error('Error in Strapi serverless handler:', error);
+        res.status(500).send(error.message);
     }
-    await global.strapi.server.httpServer.emit('request', req, res);
 };
