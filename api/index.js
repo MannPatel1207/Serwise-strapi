@@ -1,5 +1,20 @@
 const strapi = require('@strapi/strapi');
 
+// Force Vercel to include these modules and their package.json files in the bundle
+try {
+    require('@strapi/content-manager/package.json');
+    require('@strapi/content-type-builder/package.json');
+    require('@strapi/upload/package.json');
+    require('@strapi/i18n/package.json');
+    require('@strapi/email/package.json');
+    require('@strapi/admin/package.json');
+    require('@strapi/plugin-users-permissions/package.json');
+    require('@strapi/plugin-graphql/package.json');
+    require('@strapi/plugin-cloud/package.json');
+} catch (e) {
+    // These are for the Vercel NFT tracer to include the files
+}
+
 module.exports = async (req, res) => {
     try {
         if (!global.strapi) {
